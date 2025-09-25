@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QQ飞车高手杯分组抽签</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #e8f2ff, #f0f6ff); /* 淡雅的蓝白渐变背景 */
+      color: #333;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 32px;
+      letter-spacing: 2px;
+      color: #1e3a8a;
+    }
+    .main {
+      display: flex;
+      gap: 30px;
+      max-width: 90vw;
+      width: 100%;
+    }
+    .rules, .container {
+      flex: 1;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(6px);
+      border-radius: 20px;
+      padding: 25px 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease forwards;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    .rules h2 {
+      margin-bottom: 15px;
+      font-size: 20px;
+      color: #2563eb;
+      border-left: 5px solid #2563eb;
+      padding-left: 10px;
+    }
+    .rules p {
+      margin: 8px 0;
+      line-height: 1.6;
+    }
+    .rules ul {
+      margin: 8px 0 16px 20px;
+      padding: 0;
+    }
+    .rules li {
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+    label {
+      display: block;
+      margin: 15px 0 6px;
+      font-size: 14px;
+      color: #444;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 14px;
+      margin-bottom: 15px;
+      background: #fff;
+    }
+    textarea {
+      height: 180px;
+      resize: none;
+    }
+    .btn {
+      display: block;
+      background: #3b82f6;
+      color: #fff;
+      font-weight: bold;
+      padding: 12px 24px;
+      margin: 15px auto;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+    .btn:hover {
+      background: #2563eb;
+      transform: scale(1.05);
+    }
+    .results {
+      margin-top: 20px;
+    }
+    .group {
+      background: rgba(59,130,246,0.1);
+      color: #1e3a8a;
+      padding: 12px 15px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: slideUp 0.5s forwards;
+    }
+    .group:nth-child(1){animation-delay:0.2s;}
+    .group:nth-child(2){animation-delay:0.4s;}
+    .group:nth-child(3){animation-delay:0.6s;}
+    .group:nth-child(4){animation-delay:0.8s;}
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes slideUp {
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 高质量群第三届「高手杯」飞车比赛 🎉</h1>
+  <div class="main">
+    <!-- 左边规则 -->
+    <div class="rules">
+      <h2>赛事规则</h2>
+      <p>高质量群第三届“高手杯”飞车比赛火热来袭！🍀🍀🍀</p>
+      
+      <h2>一、赛事基本信息</h2>
+      <p>1. 赛事名称：第三届高手杯飞车挑战赛</p>
+      <p>2. 时间：2025年10月1日下午14:00（初赛+决赛）</p>
+      
+      <h2>二、参赛对象</h2>
+      <p>2025年10月1日前进入本群的所有群友，比赛当天进入的不算。</p>
+      
+      <h2>三、赛程安排</h2>
+      <ul>
+        <li>报名阶段：2025年10月1日前，通过本群接龙填写信息报名，参赛名额18人，满员截止！</li>
+        <li>初赛：按报名时间分组，6人一组混战积分，每组前2名晋级决赛。</li>
+        <li>半决赛：初赛晋级选手混战，第一直接进入决赛，2、3名单挑，胜者进决赛，败者为“季军”。</li>
+        <li>冠亚军决赛：半决赛混战第1名 vs 2、3名单挑胜者，单挑抢9，决出冠亚军。</li>
+      </ul>
+      
+      <h2>四、竞赛规则</h2>
+      <ul>
+        <li>统一使用 S车226 或 227，赛道为赛事地图。</li>
+        <li>禁止外挂、作弊插件，违规直接取消资格。</li>
+      </ul>
+      
+      <h2>五、奖项设置</h2>
+      <ul>
+        <li>冠军：奖金188元 + 紫钻5个月</li>
+        <li>亚军：奖金128元 + 紫钻3个月</li>
+        <li>季军：奖金88元 + 紫钻1个月</li>
+        <li>所有参赛群友（比赛当天确实参赛）均送一瓶牛子（6.66元）</li>
+      </ul>
+    </div>
+    
+    <!-- 右边分组功能 -->
+    <div class="container">
+      <h2 style="text-align:center; color:#1e3a8a;">🎲 分组抽签</h2>
+      <div style="display: flex; gap: 20px; align-items: end;">
+        <div style="flex: 1;">
+          <label>分隔符（留空则使用换行）：</label>
+          <input id="delimiter" type="text" placeholder="例如 , 或 ; （不填则换行分割）"/>
+        </div>
+        <div style="flex: 1;">
+          <label>每组个数：</label>
+          <input id="groupSize" type="number" value="6" min="1" />
+        </div>
+      </div>
+      <label>姓名列表：</label>
+      <textarea id="nameList" placeholder="请输入姓名，每行一个或用分隔符分隔"></textarea>
+      <button class="btn" onclick="generateGroups()">开始分组</button>
+      <div class="results" id="results"></div>
+    </div>
+  </div>
+
+  <script>
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function generateGroups() {
+      const delimiterInput = document.getElementById("delimiter").value.trim();
+      const delimiter = delimiterInput || "\n"; // 默认换行
+      const groupSize = parseInt(document.getElementById("groupSize").value);
+      let names = document.getElementById("nameList").value
+        .split(delimiter)
+        .map(n => n.trim())
+        .filter(n => n);
+
+      if (names.length === 0 || groupSize < 1) {
+        alert("请输入有效的姓名和每组个数！");
+        return;
+      }
+
+      shuffle(names);
+      const groups = [];
+      for (let i = 0; i < names.length; i += groupSize) {
+        groups.push(names.slice(i, i + groupSize));
+      }
+
+      const results = document.getElementById("results");
+      results.innerHTML = "";
+      groups.forEach((group, i) => {
+        const div = document.createElement("div");
+        div.className = "group";
+        div.innerText = `第${i+1}组： ${group.join(", ")}`;
+        results.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
